@@ -1,0 +1,55 @@
+{
+    "user": {
+        "username": "shortland",
+        "password": "short98",
+        "hash": "abcdefgh",
+        "email": "ilankleiman@gmail.com",
+        "verified": true,
+        "device-identifier": "abcd-1234-efgh-5678-ijkl",
+        "tower": {
+            "level": 18,
+            "exp": 14064,
+            "cash": 14000,
+            "gold": 640,
+            "tower-name": "Ilan's Tower",
+            "floors": [
+                {
+                    "name": "Starbucks",
+                    "industry-type": "Food",
+                    "level": 3,
+                    "current-workers": 3,
+                    "max-workers": 3,
+                    "monthly-rent": 2400,
+                    "under-construction": false
+                },
+                {
+                    "name": "Dunkin Donuts",
+                    "industry-type": "Food",
+                    "level": 2,
+                    "current-workers": 1,
+                    "max-workers": 2,
+                    "monthly-rent": 2200,
+                    "under-construction": false
+                },
+                {
+                    "name": "Papa John's Pizza",
+                    "industry-type": "Food",
+                    "level": 4,
+                    "current-workers": 3,
+                    "max-workers": 4,
+                    "monthly-rent": 2600,
+                    "under-construction": true
+                },
+                {
+                    "name": "Clinic",
+                    "industry-type": "Public Service",
+                    "level": 0,
+                    "current-workers": 0,
+                    "max-workers": 0,
+                    "monthly-rent": 2000,
+                    "under-construction": true
+                }
+            ]
+        }
+    }
+}
