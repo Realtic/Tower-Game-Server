@@ -20,7 +20,8 @@
                     "current-workers": 3,
                     "max-workers": 3,
                     "monthly-rent": 2400,
-                    "under-construction": false
+                    "under-construction": false,
+                    "construction-start": 0
                 },
                 {
                     "name": "Dunkin Donuts",
@@ -29,7 +30,8 @@
                     "current-workers": 1,
                     "max-workers": 2,
                     "monthly-rent": 2200,
-                    "under-construction": false
+                    "under-construction": false,
+                    "construction-start": 0
                 },
                 {
                     "name": "Papa John's Pizza",
@@ -38,7 +40,8 @@
                     "current-workers": 3,
                     "max-workers": 4,
                     "monthly-rent": 2600,
-                    "under-construction": true
+                    "under-construction": true,
+                    "construction-start": 1592850000
                 },
                 {
                     "name": "Clinic",
@@ -47,7 +50,8 @@
                     "current-workers": 0,
                     "max-workers": 0,
                     "monthly-rent": 2000,
-                    "under-construction": true
+                    "under-construction": true,
+                    "construction-start": 1592850322
                 }
             ]
         }
