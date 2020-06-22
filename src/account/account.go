@@ -1,44 +1,44 @@
 package account
 
 import (
-	"os"
-	"fmt"
-	"log"
-	"io/ioutil"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
 )
 
 type Account struct {
-	user	User	`json:"user"`
+	user User `json:"user"`
 }
 
 type User struct {
-    username	string	`json:"username"`
-    password	string	`json:"password"`
-    hash		string	`json:"hash"`
-	email		string	`json:"email"`
-	verified	bool	`json:"verified"`
-	deviceId	string	`json:"device-identifier"`
-	tower		Tower	`json:"tower"`
+	username string `json:"username"`
+	password string `json:"password"`
+	hash     string `json:"hash"`
+	email    string `json:"email"`
+	verified bool   `json:"verified"`
+	deviceId string `json:"device-identifier"`
+	tower    Tower  `json:"tower"`
 }
 
 type Tower struct {
-	level	int		`json:"level"`
-	exp		int		`json:"exp"`
-	cash	int		`json:"cash"`
-	gold	int		`json:"gold"`
-	name	string	`json:"tower-name"`
-	floors	[]Floor	`json:"floors"`
+	level  int     `json:"level"`
+	exp    int     `json:"exp"`
+	cash   int     `json:"cash"`
+	gold   int     `json:"gold"`
+	name   string  `json:"tower-name"`
+	floors []Floor `json:"floors"`
 }
 
 type Floor struct {
-	name			string	`json:"name"`
-	industry		string	`json:"industry-type"`
-	level			int		`json:"level"`
-	currentWorkers	int		`json:"current-workers"`
-	maxWorkers		int		`json:"max-workers"`
-	monthlyRent		int		`json:"monthly-rent"`
-	construction	bool	`json:"under-construction"`
+	name           string `json:"name"`
+	industry       string `json:"industry-type"`
+	level          int    `json:"level"`
+	currentWorkers int    `json:"current-workers"`
+	maxWorkers     int    `json:"max-workers"`
+	monthlyRent    int    `json:"monthly-rent"`
+	construction   bool   `json:"under-construction"`
 }
 
 func Load(accountId string) (*Account, error) {
@@ -62,8 +62,8 @@ func Load(accountId string) (*Account, error) {
 	if err := json.Unmarshal(jsonBytes, &a); err != nil {
 		log.Print(err)
 		return &a, err
-    }
-	
+	}
+
 	fmt.Printf("The user is: %+v\n", a)
 	// fmt.Printf("The tower level is: %d\n", a.user.tower.level)
 

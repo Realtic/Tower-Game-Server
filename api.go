@@ -1,10 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
-	"encoding/json"
 
 	"github.com/gorilla/mux"
 
@@ -43,13 +43,13 @@ func handleRegister(w http.ResponseWriter, r *http.Request) {
 func handleProfile(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	
+
 	acc, err := account.Load(mux.Vars(r)["auth"])
 	if err != nil {
 		fmt.Fprint(w, "error loading account")
 		return
 	}
-	
+
 	accountData, err := json.Marshal(acc)
 	if err != nil {
 		fmt.Fprint(w, "unable to marshal account json")
