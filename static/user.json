@@ -11,10 +11,12 @@
             "exp": 14064,
             "cash": 14000,
             "gold": 640,
+            "last-synchronized": 1592855599,
             "tower-name": "Ilan's Tower",
             "floors": [
                 {
                     "name": "Starbucks",
+                    "floor-id": 100000,
                     "industry-type": "Food",
                     "level": 3,
                     "current-workers": 3,
@@ -25,6 +27,7 @@
                 },
                 {
                     "name": "Dunkin Donuts",
+                    "floor-id": 100001,
                     "industry-type": "Food",
                     "level": 2,
                     "current-workers": 1,
@@ -35,6 +38,7 @@
                 },
                 {
                     "name": "Papa John's Pizza",
+                    "floor-id": 100002,
                     "industry-type": "Food",
                     "level": 4,
                     "current-workers": 3,
@@ -45,6 +49,7 @@
                 },
                 {
                     "name": "Clinic",
+                    "floor-id": 100003,
                     "industry-type": "Public Service",
                     "level": 0,
                     "current-workers": 0,

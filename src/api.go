@@ -8,7 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"tower/account"
+	"tower/load"
 )
 
 func main() {
@@ -45,7 +45,7 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 func handleProfile(w http.ResponseWriter, r *http.Request) {
 	writeStandardHeaders(w)
 
-	acc, err := account.Load(mux.Vars(r)["auth"])
+	acc, err := load.AccountFresh(mux.Vars(r)["auth"])
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprint(w, "error loading account")
