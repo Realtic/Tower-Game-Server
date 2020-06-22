@@ -2,58 +2,53 @@ package account
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
-	"os"
 )
 
-type Account struct {
-	user User `json:"user"`
-}
-
-type User struct {
-	username string `json:"username"`
-	password string `json:"password"`
-	hash     string `json:"hash"`
-	email    string `json:"email"`
-	verified bool   `json:"verified"`
-	deviceId string `json:"device-identifier"`
-	tower    Tower  `json:"tower"`
-}
-
-type Tower struct {
-	level  int     `json:"level"`
-	exp    int     `json:"exp"`
-	cash   int     `json:"cash"`
-	gold   int     `json:"gold"`
-	name   string  `json:"tower-name"`
-	floors []Floor `json:"floors"`
-}
-
+// Floor data structure for a floor in a tower
 type Floor struct {
-	name           string `json:"name"`
-	industry       string `json:"industry-type"`
-	level          int    `json:"level"`
-	currentWorkers int    `json:"current-workers"`
-	maxWorkers     int    `json:"max-workers"`
-	monthlyRent    int    `json:"monthly-rent"`
-	construction   bool   `json:"under-construction"`
+	Name           string `json:"name"`
+	Industry       string `json:"industry-type"`
+	Level          int    `json:"level"`
+	CurrentWorkers int    `json:"current-workers"`
+	MaxWorkers     int    `json:"max-workers"`
+	MonthlyRent    int    `json:"monthly-rent"`
+	Construction   bool   `json:"under-construction"`
 }
 
-func Load(accountId string) (*Account, error) {
+// Tower data structure for a user's tower
+type Tower struct {
+	Level  int     `json:"level"`
+	Exp    int     `json:"exp"`
+	Cash   int     `json:"cash"`
+	Gold   int     `json:"gold"`
+	Name   string  `json:"tower-name"`
+	Floors []Floor `json:"floors"`
+}
+
+// User data structure for an account's user
+type User struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Hash     string `json:"hash"`
+	Email    string `json:"email"`
+	Verified bool   `json:"verified"`
+	DeviceID string `json:"device-identifier"`
+	Tower    Tower  `json:"tower"`
+}
+
+// Account data structure
+type Account struct {
+	User User `json:"user"`
+}
+
+// Load the specific accountId's account into memory
+func Load(accountID string) (*Account, error) {
 	var a Account
 
-	jsonFile, err := os.Open("static/user.json")
-	if err != nil {
-		fmt.Println(err)
-		return &a, err
-	}
-
-	defer jsonFile.Close()
-
 	// TODO: Temporarily loads a static user file
-	jsonBytes, err := ioutil.ReadAll(jsonFile)
+	jsonBytes, err := ioutil.ReadFile("../static/user.json")
 	if err != nil {
 		log.Print(err)
 		return &a, err
@@ -64,8 +59,7 @@ func Load(accountId string) (*Account, error) {
 		return &a, err
 	}
 
-	fmt.Printf("The user is: %+v\n", a)
-	// fmt.Printf("The tower level is: %d\n", a.user.tower.level)
+	log.Printf("The user is: %+v\n", a)
 
 	return &a, nil
 }
