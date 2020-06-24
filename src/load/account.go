@@ -2,13 +2,16 @@ package load
 
 import (
 	"log"
+
 	"tower/assemble"
-	"tower/datatype"
+	datatype "tower/datatype/user"
 )
 
-// AccountFresh returns an assembled (synchronized-server) account
+// TODO: Can merge these functions together
+
+// FreshAccount returns an assembled (synchronized-server) account
 // Writes the updated account back to server
-func AccountFresh(accountID string) (*datatype.Account, error) {
+func FreshAccount(accountID string) (*datatype.Account, error) {
 	assembler := assemble.InitAccount(accountID)
 	if assembler.Error != nil {
 		log.Print("error when calling assemble.InitAccount")
@@ -24,8 +27,20 @@ func AccountFresh(accountID string) (*datatype.Account, error) {
 	return assembler.Account, nil
 }
 
-// TODO:
-// // AccountStale returns an assembled (unsynchronized-server) account
-// // Is read only, doesn't update the server with the account's newest details
-// func AccountStale(accountID string) (*datatype.Account, error) {
-// }
+// StaleAccount returns an assembled (unsynchronized-server) account
+// Is read only, doesn't update the server with the account's newest details
+func StaleAccount(accountID string) (*datatype.Account, error) {
+	assembler := assemble.InitAccount(accountID)
+	if assembler.Error != nil {
+		log.Print("error when calling assemble.InitAccount")
+		return assembler.Account, assembler.Error
+	}
+
+	err := assembler.StaleAccount()
+	if err != nil {
+		return assembler.Account, err
+	}
+
+	log.Print("successfully loaded stale account")
+	return assembler.Account, nil
+}

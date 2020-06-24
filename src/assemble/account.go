@@ -3,8 +3,9 @@ package assemble
 import (
 	"log"
 	"time"
+
 	"tower/datastore"
-	"tower/datatype"
+	datatype "tower/datatype/user"
 	"tower/synchronize"
 )
 
@@ -58,19 +59,19 @@ func (acc *AccountAssembler) FreshAccount() error {
 	return nil
 }
 
-// TODO:
-// // StaleAccount returns an assembled, unsynchronized account.
-// // Meaning it does not update the server datastore. It's simply
-// // a read-only transaction.
-// func StaleAccount(accountID string) *AccountAssembler {
-// 	// accountBlob := blob.AccountInit(accountID)
+// StaleAccount returns an assembled, unsynchronized account.
+// Meaning it does not update the server datastore. It's simply
+// a read-only transaction.
+func (acc *AccountAssembler) StaleAccount() error {
+	// Read in the server side-saved account
+	account, err := acc.Store.Read()
+	if err != nil {
+		log.Print("error reading from account store")
+		return err
+	}
 
-// 	// accountBlob.Read()
-// 	// if accountBlob.Error != nil {
-// 	// 	return nil, accountBlob.Error
-// 	// }
+	acc.Account = &account
 
-// 	// return accountBlob.Account, nil
-
-// 	return nil
-// }
+	log.Print("successfully assembled stale account")
+	return nil
+}

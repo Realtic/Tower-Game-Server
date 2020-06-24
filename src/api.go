@@ -9,12 +9,15 @@ import (
 	"github.com/gorilla/mux"
 
 	"tower/load"
+	"tower/resapi"
 )
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", handleRoot).Methods(http.MethodGet, http.MethodOptions)
-	router.HandleFunc("/data/profile/{auth}", handleProfile).Methods(http.MethodGet, http.MethodOptions)
+	router.HandleFunc("/data/profile/{auth}", handleProfile).
+		Queries("s", "{s}").
+		Methods(http.MethodGet, http.MethodOptions)
 	router.Use(mux.CORSMethodMiddleware(router))
 
 	log.Print("running")
@@ -43,21 +46,28 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleProfile(w http.ResponseWriter, r *http.Request) {
+	// TODO: move into resapi, meaning need to create func init for resapi rather than init inline
 	writeStandardHeaders(w)
 
-	acc, err := load.AccountFresh(mux.Vars(r)["auth"])
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		fmt.Fprint(w, "error loading account")
+	writer := resapi.ResponseAPI{
+		Writer: w,
+	}
+
+	var acc, err interface{}
+	switch mux.Vars(r)["s"] {
+	case "fresh":
+		acc, err = load.FreshAccount(mux.Vars(r)["auth"])
+	case "stale":
+		acc, err = load.StaleAccount(mux.Vars(r)["auth"])
+	default:
+		writer.Error("invalid account status request")
 		return
 	}
 
-	accountData, err := json.Marshal(acc)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		fmt.Fprint(w, "unable to marshal account json")
+		writer.Error("loading account failed")
 		return
 	}
 
-	fmt.Fprintf(w, "%s", string(accountData))
+	writer.PrintJSON(acc)
 }

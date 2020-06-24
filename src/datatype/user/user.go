@@ -1,4 +1,4 @@
-package datatype
+package user
 
 // User data structure for an account's user
 type User struct {

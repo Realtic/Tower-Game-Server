@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"tower/datatype"
+
+	datatype "tower/datatype/user"
 )
 
 // AccountStore ...

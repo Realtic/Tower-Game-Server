@@ -1,0 +1,188 @@
+{
+    "floors": [
+        {
+            "default-name": "Starbucks",
+            "industry-type": "Food",
+            "floor-id": 100000,
+            "initial-construction-sprite": "",
+            "construction-cost": 2500,
+            "construction-time": 10,
+            "floor-levels": [
+                {
+                    "level": 1,
+                    "upgrade-time": 60,
+                    "upgrade-cost": 5000,
+                    "income": 1000,
+                    "max-workers": 1,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 2,
+                    "upgrade-time": 300,
+                    "upgrade-cost": 10000,
+                    "income": 1500,
+                    "max-workers": 2,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 3,
+                    "upgrade-time": 1500,
+                    "upgrade-cost": 20000,
+                    "income": 2000,
+                    "max-workers": 3,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 4,
+                    "upgrade-time": -1,
+                    "upgrade-cost": -1,
+                    "income": 3000,
+                    "max-workers": 4,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                }
+            ]
+        },
+        {
+            "default-name": "Dunkin Donuts",
+            "industry-type": "Food",
+            "floor-id": 100001,
+            "initial-construction-sprite": "",
+            "construction-cost": 2501,
+            "construction-time": 11,
+            "floor-levels": [
+                {
+                    "level": 1,
+                    "upgrade-time": 60,
+                    "upgrade-cost": 5001,
+                    "income": 1001,
+                    "max-workers": 1,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 2,
+                    "upgrade-time": 300,
+                    "upgrade-cost": 10001,
+                    "income": 1501,
+                    "max-workers": 2,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 3,
+                    "upgrade-time": 1500,
+                    "upgrade-cost": 20001,
+                    "income": 2001,
+                    "max-workers": 3,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 4,
+                    "upgrade-time": -1,
+                    "upgrade-cost": -1,
+                    "income": 3001,
+                    "max-workers": 4,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                }
+            ]
+        },
+        {
+            "default-name": "Papa John's Pizza",
+            "industry-type": "Food",
+            "floor-id": 100002,
+            "initial-construction-sprite": "",
+            "construction-cost": 2502,
+            "construction-time": 12,
+            "floor-levels": [
+                {
+                    "level": 1,
+                    "upgrade-time": 60,
+                    "upgrade-cost": 5002,
+                    "income": 1002,
+                    "max-workers": 1,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 2,
+                    "upgrade-time": 300,
+                    "upgrade-cost": 10002,
+                    "income": 1502,
+                    "max-workers": 2,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 3,
+                    "upgrade-time": 1500,
+                    "upgrade-cost": 20002,
+                    "income": 2002,
+                    "max-workers": 3,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 4,
+                    "upgrade-time": -1,
+                    "upgrade-cost": -1,
+                    "income": 3002,
+                    "max-workers": 4,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                }
+            ]
+        },
+        {
+            "default-name": "Clinic",
+            "industry-type": "Public Service",
+            "floor-id": 100003,
+            "initial-construction-sprite": "",
+            "construction-cost": 2503,
+            "construction-time": 13,
+            "floor-levels": [
+                {
+                    "level": 1,
+                    "upgrade-time": 60,
+                    "upgrade-cost": 5003,
+                    "income": 1003,
+                    "max-workers": 1,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 2,
+                    "upgrade-time": 300,
+                    "upgrade-cost": 10003,
+                    "income": 1503,
+                    "max-workers": 2,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 3,
+                    "upgrade-time": 1500,
+                    "upgrade-cost": 20003,
+                    "income": 2003,
+                    "max-workers": 3,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                },
+                {
+                    "level": 4,
+                    "upgrade-time": -1,
+                    "upgrade-cost": -1,
+                    "income": 3003,
+                    "max-workers": 4,
+                    "sprite": "",
+                    "upgrade-sprite": ""
+                }
+            ]
+        }
+    ]
+}
