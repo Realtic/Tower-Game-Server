@@ -2,11 +2,13 @@ package calculate
 
 import (
 	"log"
+	math "math/big"
 
 	datatype "tower/datatype/user"
 )
 
 // TODO: Exp & Tower Level
+
 // CalcTower recalculates the tower stats:
 //  Cash from floors (Calculate what the current cash value should be, from last synchronize time & each floor income)
 //  Exp from just Finished Construction/Upgrades (upgrades that finished since the last synchronize need to have exp added to current).
@@ -22,7 +24,9 @@ func CalcTower(tower *datatype.Tower, currentTime int64) error {
 			continue
 		}
 
+		log.Printf("can collect rent, thus old cash is: %d", tower.Cash)
 		tower.Cash += calculateFloorIncome(&(tower.Floors[i]), tower.LastSync, currentTime)
+		log.Printf("new cash is: %d", tower.Cash)
 	}
 
 	log.Print("Finished Calc")
@@ -33,8 +37,29 @@ func isRentCollectable(floor *datatype.Floor) bool {
 	return floor.FloorOpened
 }
 
+// Messy and probably not very efficient
 func calculateFloorIncome(floor *datatype.Floor, lastTime int64, currentTime int64) int64 {
-	return floor.MonthlyRent * ((currentTime - lastTime) / IncomeRate)
+	hourly := new(math.Float).SetInt64(floor.HourlyRent)
+	cTime := new(math.Float).SetInt64(currentTime)
+	lTime := new(math.Float).SetInt64(lastTime)
+
+	log.Printf("Last Time: %d, Current Time: %d, Hourly Rent: %d, Income Rate: %d",
+		lTime, cTime, hourly, 3600)
+
+	var total math.Float
+	var tDiff math.Float
+	var fHour math.Float
+
+	fHour.SetInt64(3600)
+	tDiff.Sub(cTime, lTime)
+	tDiff.Quo(&tDiff, &fHour)
+	total.Mul(hourly, &tDiff)
+
+	totalInt, _ := total.Int64()
+
+	// return floor.HourlyRent * ((currentTime - lastTime) / 3600)
+
+	return totalInt
 }
 
 // TODO:

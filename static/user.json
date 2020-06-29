@@ -21,7 +21,7 @@
                     "level": 3,
                     "current-workers": 3,
                     "max-workers": 3,
-                    "monthly-rent": 2400,
+                    "hourly-rent": 2400,
                     "under-construction": false,
                     "construction-start": 0,
                     "floor-opened": true
@@ -33,7 +33,7 @@
                     "level": 2,
                     "current-workers": 1,
                     "max-workers": 2,
-                    "monthly-rent": 2200,
+                    "hourly-rent": 2200,
                     "under-construction": false,
                     "construction-start": 0,
                     "floor-opened": true
@@ -45,7 +45,7 @@
                     "level": 4,
                     "current-workers": 3,
                     "max-workers": 4,
-                    "monthly-rent": 2600,
+                    "hourly-rent": 2600,
                     "under-construction": true,
                     "construction-start": 1592850000,
                     "floor-opened": false
@@ -57,7 +57,7 @@
                     "level": 0,
                     "current-workers": 0,
                     "max-workers": 0,
-                    "monthly-rent": 2000,
+                    "hourly-rent": 2000,
                     "under-construction": true,
                     "construction-start": 1592850322,
                     "floor-opened": false

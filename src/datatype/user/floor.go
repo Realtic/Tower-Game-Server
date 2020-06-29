@@ -8,7 +8,7 @@ type Floor struct {
 	Level             int    `json:"level"`
 	CurrentWorkers    int    `json:"current-workers"`
 	MaxWorkers        int    `json:"max-workers"`
-	MonthlyRent       int64  `json:"monthly-rent"`
+	HourlyRent        int64  `json:"hourly-rent"`
 	UnderConstruction bool   `json:"under-construction"`
 	ConstructionStart int    `json:"construction-start"`
 	FloorOpened       bool   `json:"floor-opened"`
