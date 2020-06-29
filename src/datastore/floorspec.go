@@ -11,15 +11,13 @@ import (
 // FloorSpecStore ...
 type FloorSpecStore struct {
 	genericStore
-	FloorID int
 }
 
 // TODO: not necessary here since we gulp in all the floors
 
 // InitFloorSpecStore ...
-func InitFloorSpecStore(floorID int) *FloorSpecStore {
+func InitFloorSpecStore() *FloorSpecStore {
 	var store = new(FloorSpecStore)
-	store.FloorID = floorID
 
 	return store
 }

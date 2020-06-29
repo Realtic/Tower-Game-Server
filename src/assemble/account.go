@@ -30,9 +30,29 @@ func InitAccount(accountID string) *AccountAssembler {
 }
 
 // FreshAccount returns an assembled, synchronized account.
-// Meaning that this funciton updates the server side datastore
-// with the updated account details.
 func (acc *AccountAssembler) FreshAccount() error {
+	// Read in the server side-saved account
+	account, err := acc.Store.Read()
+	if err != nil {
+		log.Print("error reading from account store")
+		return err
+	}
+
+	acc.Account = &account
+
+	// Synchronize the account
+	err = synchronize.SyncAccount(acc.Account, acc.CurrentTime)
+	if err != nil {
+		log.Print("error when attempting to synchronize account")
+		return err
+	}
+
+	log.Print("successfully assembled fresh account")
+	return nil
+}
+
+// ActiveAccount returns a FreshAccount that's also written back to the server
+func (acc *AccountAssembler) ActiveAccount() error {
 	// Read in the server side-saved account
 	account, err := acc.Store.Read()
 	if err != nil {
@@ -55,7 +75,7 @@ func (acc *AccountAssembler) FreshAccount() error {
 		return err
 	}
 
-	log.Print("successfully assembled fresh account")
+	log.Print("successfully assembled active account")
 	return nil
 }
 

@@ -6,21 +6,17 @@ import (
 	datatype "tower/datatype/floorspec"
 )
 
-// TODO: get only floorspec for a specific floor
-
 // FloorSpecAssembler ...
 type FloorSpecAssembler struct {
-	FloorID int
-	Store   *datastore.FloorSpecStore
-	Floors  *datatype.Floors
-	Error   error
+	Store  *datastore.FloorSpecStore
+	Floors *datatype.Floors
+	Error  error
 }
 
 // InitFloorSpec ...
-func InitFloorSpec(floorID int) *FloorSpecAssembler {
+func InitFloorSpec() *FloorSpecAssembler {
 	var floorSpec = new(FloorSpecAssembler)
-	floorSpec.FloorID = floorID
-	floorSpec.Store = datastore.InitFloorSpecStore(floorID)
+	floorSpec.Store = datastore.InitFloorSpecStore()
 
 	return floorSpec
 }

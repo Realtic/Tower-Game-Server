@@ -56,9 +56,11 @@ func handleProfile(w http.ResponseWriter, r *http.Request) {
 	var acc, err interface{}
 	switch mux.Vars(r)["s"] {
 	case "fresh":
-		acc, err = load.FreshAccount(mux.Vars(r)["auth"])
+		acc, err = load.Account(mux.Vars(r)["auth"], load.FRESH)
 	case "stale":
-		acc, err = load.StaleAccount(mux.Vars(r)["auth"])
+		acc, err = load.Account(mux.Vars(r)["auth"], load.STALE)
+	case "active":
+		acc, err = load.Account(mux.Vars(r)["auth"], load.ACTIVE)
 	default:
 		writer.Error("invalid account status request")
 		return

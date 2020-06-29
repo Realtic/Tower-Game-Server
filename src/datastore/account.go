@@ -46,5 +46,17 @@ func (door *AccountStore) Read() (datatype.Account, error) {
 // Write saves the blob account back to server
 func (door *AccountStore) Write(acc *datatype.Account) error {
 	// TODO: Write the data back to database/disk
+
+	rawBytes, err := json.Marshal(*acc)
+	if err != nil {
+		return err
+	}
+
+	log.Printf("bytes from marshal of acc struct is %s", rawBytes)
+
+	if err = ioutil.WriteFile("../static/user.json", rawBytes, 0644); err != nil {
+		return err
+	}
+
 	return nil
 }

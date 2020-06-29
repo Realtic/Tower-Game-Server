@@ -7,11 +7,13 @@ import (
 	datatype "tower/datatype/floorspec"
 )
 
-// TODO: specific floor load
+// TODO: load in all floors to app memory when the app starts,
+// Thus, instead of reading from file every time - read only once into memory when app starts...
+// Can do this since floorspec.json isn't expected to really change while the app is running.
 
-// AllFloors ...
-func AllFloors(floorID int) (*datatype.Floors, error) {
-	assembler := assemble.InitFloorSpec(floorID)
+// AllFloors loads all the floors
+func AllFloors() (*datatype.Floors, error) {
+	assembler := assemble.InitFloorSpec()
 	if assembler.Error != nil {
 		log.Print("error when calling assemble.InitFloorSpec")
 		return assembler.Floors, assembler.Error
