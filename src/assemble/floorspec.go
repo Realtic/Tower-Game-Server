@@ -22,19 +22,19 @@ func InitFloorSpec(floorID int) *FloorSpecAssembler {
 	floorSpec.FloorID = floorID
 	floorSpec.Store = datastore.InitFloorSpecStore(floorID)
 
-	return account
+	return floorSpec
 }
 
 // AllFloors returns the floorspec for all floors
-func (acc *AccountAssembler) AllFloors() error {
+func (f *FloorSpecAssembler) AllFloors() error {
 	// Read in the server side-saved account
-	floors, err := acc.Store.Read()
+	floors, err := f.Store.Read()
 	if err != nil {
 		log.Print("error reading from account store")
 		return err
 	}
 
-	acc.Floors = &floors
+	f.Floors = &floors
 
 	log.Print("successfully assembled floors")
 	return nil

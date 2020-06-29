@@ -25,7 +25,7 @@ func InitFloorSpecStore(floorID int) *FloorSpecStore {
 }
 
 // Read ...
-func (door *FloorSpecStore) Read() (datatype.FloorSpec, error) {
+func (door *FloorSpecStore) Read() (datatype.Floors, error) {
 	var floors datatype.Floors
 
 	// TODO: Temporarily loads a static floorspec file, eventually load from "database"
