@@ -3,6 +3,8 @@ package synchronize
 import (
 	"log"
 
+	cache "github.com/patrickmn/go-cache"
+
 	"tower/calculate"
 	datatype "tower/datatype/user"
 )
@@ -13,7 +15,7 @@ var resyncMinTime int64 = 3
 
 // SyncAccount synchronizes the given account up to the current time
 // Mutates given account pointer
-func SyncAccount(account *datatype.Account, timestamp int64) error {
+func SyncAccount(account *datatype.Account, timestamp int64, floorCache *cache.Cache) error {
 	log.Print("begin of account sync")
 
 	if (timestamp - account.User.Tower.LastSync) <= resyncMinTime {
@@ -22,7 +24,7 @@ func SyncAccount(account *datatype.Account, timestamp int64) error {
 		return nil
 	}
 
-	if err := calculate.CalcTower(&(account.User.Tower), timestamp); err != nil {
+	if err := calculate.CalcTower(&(account.User.Tower), timestamp, floorCache); err != nil {
 		return err
 	}
 

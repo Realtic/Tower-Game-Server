@@ -4,6 +4,8 @@ import (
 	"errors"
 	"log"
 
+	cache "github.com/patrickmn/go-cache"
+
 	"tower/assemble"
 	datatype "tower/datatype/user"
 )
@@ -24,7 +26,7 @@ const (
 
 // Account assembles an account from the server
 // Depending on the loadType - it'll load a stale, fresh or active account.
-func Account(accountID string, loadType Type) (*datatype.Account, error) {
+func Account(accountID string, loadType Type, floorCache *cache.Cache) (*datatype.Account, error) {
 	assembler := assemble.InitAccount(accountID)
 	if assembler.Error != nil {
 		log.Print("error when calling assemble.InitAccount")
@@ -38,10 +40,10 @@ func Account(accountID string, loadType Type) (*datatype.Account, error) {
 		err = assembler.StaleAccount()
 	case FRESH:
 		log.Print("assembling fresh account")
-		err = assembler.FreshAccount()
+		err = assembler.FreshAccount(floorCache)
 	case ACTIVE:
 		log.Print("assembling active account")
-		err = assembler.ActiveAccount()
+		err = assembler.ActiveAccount(floorCache)
 	default:
 		return nil, errors.New("invalid load type")
 	}

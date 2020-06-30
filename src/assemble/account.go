@@ -4,6 +4,8 @@ import (
 	"log"
 	"time"
 
+	cache "github.com/patrickmn/go-cache"
+
 	"tower/datastore"
 	datatype "tower/datatype/user"
 	"tower/synchronize"
@@ -30,7 +32,7 @@ func InitAccount(accountID string) *AccountAssembler {
 }
 
 // FreshAccount returns an assembled, synchronized account.
-func (acc *AccountAssembler) FreshAccount() error {
+func (acc *AccountAssembler) FreshAccount(floorCache *cache.Cache) error {
 	// Read in the server side-saved account
 	account, err := acc.Store.Read()
 	if err != nil {
@@ -41,7 +43,7 @@ func (acc *AccountAssembler) FreshAccount() error {
 	acc.Account = &account
 
 	// Synchronize the account
-	err = synchronize.SyncAccount(acc.Account, acc.CurrentTime)
+	err = synchronize.SyncAccount(acc.Account, acc.CurrentTime, floorCache)
 	if err != nil {
 		log.Print("error when attempting to synchronize account")
 		return err
@@ -52,7 +54,7 @@ func (acc *AccountAssembler) FreshAccount() error {
 }
 
 // ActiveAccount returns a FreshAccount that's also written back to the server
-func (acc *AccountAssembler) ActiveAccount() error {
+func (acc *AccountAssembler) ActiveAccount(floorCache *cache.Cache) error {
 	// Read in the server side-saved account
 	account, err := acc.Store.Read()
 	if err != nil {
@@ -63,7 +65,7 @@ func (acc *AccountAssembler) ActiveAccount() error {
 	acc.Account = &account
 
 	// Synchronize the account
-	err = synchronize.SyncAccount(acc.Account, acc.CurrentTime)
+	err = synchronize.SyncAccount(acc.Account, acc.CurrentTime, floorCache)
 	if err != nil {
 		log.Print("error when attempting to synchronize account")
 		return err
